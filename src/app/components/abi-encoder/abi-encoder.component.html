@@ -1,0 +1,32 @@
+<h1>ABI FORM</h1>
+
+<form [formGroup]="AbiForm">
+  <div formArrayName="func">
+    <div *ngFor="let function of functions().controls; let funcIndex=index">
+      <div [formGroupName]="funcIndex" style="border: 1px solid blue; padding: 10px; width: 600px; margin: 5px;">
+
+        <input type="text" formControlName="function" class="form-control" />
+
+        <div class="col">
+
+          <div formArrayName="arguments">
+            <div *ngFor="let argument of functionArgs(funcIndex).controls; let argIndex=index">
+              <div [formGroupName]="argIndex" class="row">
+                <!-- {{skillIndex}} Skill : -->
+                <input type="text" formControlName="arg" class="form-control" />
+                <!-- Exp: -->
+                <input type="text" formControlName="value" />
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <button type="button" class="btn btn-primary" (click)="call(funcIndex)">
+          Call
+        </button>
+      </div>
+    </div>
+    <!-- <button type="button" (click)="addEmployee()">Add Employee</button> -->
+  </div>
+</form>
