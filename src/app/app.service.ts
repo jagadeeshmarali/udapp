@@ -5,9 +5,9 @@ import { ethers } from "ethers";
   providedIn: "root"
 })
 export class AppService {
-  contractAddress: string = localStorage.getItem("contractAddress");
-  nodeAddress: string = localStorage.getItem("nodeAddress");
-  selectedAccount = localStorage.getItem("selectedAccount");
+  get nodeAddress() { return localStorage.getItem("nodeAddress"); }
+  get selectedAccount() { return localStorage.getItem("selectedAccount"); }
+  get contractAddress() { return localStorage.getItem("contractAddress"); }
   provider = new ethers.providers.JsonRpcProvider(this.nodeAddress);
   constructor() { }
   async getAccounts() {

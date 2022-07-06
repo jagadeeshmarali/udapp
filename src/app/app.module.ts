@@ -21,7 +21,8 @@ import { SetupComponent } from './components';
     ReactiveFormsModule,
     NgbModule
   ],
-  providers: [],
+  providers: [
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

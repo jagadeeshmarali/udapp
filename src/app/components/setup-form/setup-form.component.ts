@@ -9,7 +9,9 @@ import { AppService } from '../../app.service';
 export class SetupComponent {
   SetupForm: FormGroup;
   accounts: string[] = []
-  constructor(public appService: AppService) {
+  constructor(
+    public appService: AppService,
+  ) {
     this.SetupForm = new FormGroup({
       contractAddress: new FormControl(this.appService.contractAddress, Validators.required),
       nodeAddress: new FormControl(this.appService.nodeAddress, Validators.required),
@@ -19,11 +21,8 @@ export class SetupComponent {
   }
 
   save() {
-    console.log(this.SetupForm.value);
     localStorage.setItem("contractAddress", this.SetupForm.get("contractAddress").value);
     localStorage.setItem("nodeAddress", this.SetupForm.get("nodeAddress").value)
-    // this.appService.contractAddress = this.SetupForm.get("contractAddress").value;
-    // this.appService.nodeAddress = this.SetupForm.get("nodeAddress").value;
   }
   setSelectedAccount(event) {
     localStorage.setItem("selectedAccount", event);
@@ -34,7 +33,6 @@ export class SetupComponent {
       if (!this.appService.selectedAccount) {
         localStorage.setItem("selectedAccount", this.accounts[0]);
       }
-
     })
 
   }
