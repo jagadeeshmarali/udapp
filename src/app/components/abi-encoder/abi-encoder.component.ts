@@ -61,37 +61,13 @@ export class ABIEncoderComponent {
   addfunctionArg(index: number, arg, type) {
     this.functionArgs(index).push(this.newArgument(arg, type));
   }
-  call(index) {
-    console.log(this.functions().at(index).value);
-    console.log(this.constructfunc(index))
-  }
+
   constructfunc(index) {
     let val = this.functions().at(index).value;
     let a = this.functions().at(index).value.arguments.map((x) => x.value);
     let name = val.function;
-    var url = 'http://localhost:8545';
-    var customProvider = new ethers.providers.JsonRpcProvider(url);
-    let accounts = []
-    customProvider.listAccounts().then((data) => {
-
-      for (let acc of data) {
-        console.log(acc)
-        customProvider.getBalance(acc).then((d) => console.log(Number(parseFloat(ethers.utils.formatEther(d)).toFixed(3))));
-
-
-      }
-      let signer = customProvider.getSigner(this.appService.selectedAccount);
-      let contract = new ethers.Contract(this.appService.contractAddress, abi.abi, signer);
-      // contract.functions.setGreeting("Hi ").then(p => { console.log(p) })
-      // contract.functions.greet().then(k => console.log(k))
-      contract.functions[name](...a).then(k => console.log(k))
-    });
-
-
-
-
-    return null
-
-    // return val.function + "(" + val.arguments[0].value + ")" as Function
+    let signer = this.appService.provider.getSigner(this.appService.selectedAccount);
+    let contract = new ethers.Contract(this.appService.contractAddress, abi.abi, signer);
+    contract.functions[name](...a).then(k => console.log(k))
   }
 }
