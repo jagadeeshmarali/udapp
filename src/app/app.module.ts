@@ -6,11 +6,13 @@ import { AppComponent } from './app.component';
 import { ABIEncoderComponent } from './components/abi-encoder/abi-encoder.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { SetupComponent } from './components';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ABIEncoderComponent
+    ABIEncoderComponent,
+    SetupComponent
   ],
   imports: [
     BrowserModule,
