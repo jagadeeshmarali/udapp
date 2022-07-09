@@ -1,0 +1,24 @@
+<div>
+  <form [formGroup]="SetupForm" class="form-group">
+    <div class="row">
+      <div class="column m-1">
+        <label for="contractAddress">Contract Address </label>
+        <input id="contractAddress" type="text" formControlName="contractAddress" class="form-control">
+      </div>
+      <div class="column m-1">
+        <label for="nodeAddress">Node Address </label>
+        <input id="nodeAddress" type="text" formControlName="nodeAddress" class="form-control">
+      </div>
+      <div class="column">
+        <button class="btn btn-primary" (click)="save()">Save</button>
+      </div>
+      <div class="column">
+        <select #account (change)="setSelectedAccount(account.value)" class="form-control">
+          <option *ngFor="let account of accounts" [ngValue]="account"
+            [selected]="appService.selectedAccount == account">{{ account }}
+          </option>
+        </select>
+      </div>
+    </div>
+  </form>
+</div>
